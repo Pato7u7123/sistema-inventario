@@ -1,4 +1,4 @@
-name: CI - Integración Continua y Pruebas Unitarias
+name: CI - Integracion Continua y Pruebas Unitarias
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Ejecución de Pruebas con unittest
+    name: Ejecucion de Pruebas con unittest
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +25,7 @@ jobs:
           python -m py_compile src/producto.py
 
       - name: Ejecutar Suite de Pruebas Unitarias
+        env:
+          PYTHONPATH: .
         run: |
           python -m unittest discover -s tests
