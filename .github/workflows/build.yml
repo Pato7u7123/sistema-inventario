@@ -1,6 +1,5 @@
-name: Construcción y Verificación del Sistema de Inventario
+name: CI - Integración Continua y Pruebas Unitarias
 
-# Eventos que activan el workflow
 on:
   push:
     branches: [ "main" ]
@@ -8,27 +7,23 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Verificación de Código Python
+  test:
+    name: Ejecución de Pruebas con unittest
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Descargar el código fuente del repositorio
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      # Paso 2: Configurar el entorno de Python
       - name: Configurar Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # Paso 3: Verificar la sintaxis de los archivos
-      - name: Compilar y verificar sintaxis de Python
+      - name: Verificar sintaxis de archivos
         run: |
           python -m py_compile src/producto.py
 
-      # Paso 4: Ejecutar el programa para comprobar que corre sin errores
-      - name: Ejecutar script principal
+      - name: Ejecutar Suite de Pruebas Unitarias
         run: |
-          python src/producto.py
+          python -m unittest discover -s tests
