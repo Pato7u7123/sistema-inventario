@@ -12,6 +12,7 @@ class Producto:
         print("Nombre:", self.nombre)
         print("Precio: $", self.precio)
         print("Existencia:", self.existencia)
+        print("Estado: Producto disponible")
 
 
 # Función para el Reto de Búsqueda
