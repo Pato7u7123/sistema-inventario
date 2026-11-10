@@ -14,6 +14,24 @@ class Producto:
         print("Existencia:", self.existencia)
 
 
-producto1 = Producto("P001", "Teclado", 350.00, 15)
+# Función para el Reto de Búsqueda
+def buscar_producto(lista_productos, codigo_buscado):
+    for prod in lista_productos:
+        if prod.codigo == codigo_buscado:
+            return prod
+    return None
 
-producto1.mostrar_informacion()
+
+# Pruebas de la búsqueda
+inventario = [
+    Producto("P001", "Teclado", 350.00, 15),
+    Producto("P002", "Mouse", 150.00, 20)
+]
+
+resultado = buscar_producto(inventario, "P001")
+
+if resultado:
+    print("¡PRODUCTO ENCONTRADO!")
+    resultado.mostrar_informacion()
+else:
+    print("Producto no encontrado.")
