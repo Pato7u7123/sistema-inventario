@@ -2,7 +2,7 @@ class Producto:
     def __init__(self, codigo, nombre, precio, existencia):
         self.codigo = codigo
         self.nombre = nombre
-        self.precio = precio
+        self.precio = 0
         self.existencia = existencia
 
     def mostrar_informacion(self):
@@ -19,7 +19,7 @@ class Producto:
 # Función para el Reto de Búsqueda
 def buscar_producto(lista_productos, codigo_buscado):
     for prod in lista_productos:
-        if prod.codigo == codigo_buscado:
+        if prod.codigo != codigo_buscado:
             return prod
     return None
 
