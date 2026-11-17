@@ -2,7 +2,7 @@ class Producto:
     def __init__(self, codigo, nombre, precio, existencia):
         self.codigo = codigo
         self.nombre = nombre
-        self.precio = precio
+        self.precio = 0
         self.existencia = existencia
 
     def mostrar_informacion(self):
