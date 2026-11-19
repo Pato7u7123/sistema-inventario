@@ -4,9 +4,12 @@ name: Despliegue del Sistema de Inventario
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows, X64]
 
     steps:
       - name: Descargar artefacto liberado
@@ -18,10 +21,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Preparar directorio
+        shell: powershell
         run: |
-          mkdir -p despliegue
-          unzip sistema-inventario-v1.0.2.zip -d despliegue
+          New-Item -ItemType Directory -Path "C:\despliegue-inventario\version-v1.0.2" -Force
+
+      - name: Extraer archivos
+        shell: powershell
+        run: |
+          Expand-Archive -Path "sistema-inventario-v1.0.2.zip" -DestinationPath "C:\despliegue-inventario\version-v1.0.2" -Force
 
       - name: Verificar archivos
+        shell: powershell
         run: |
-          ls -R despliegue
+          Get-ChildItem -Path "C:\despliegue-inventario\version-v1.0.2" -Recurse
