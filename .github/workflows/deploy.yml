@@ -1,10 +1,8 @@
+
 name: Despliegue del Sistema de Inventario
 
 on:
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   deploy:
@@ -15,14 +13,14 @@ jobs:
         uses: robinraju/release-downloader@v1
         with:
           repository: ${{ github.repository }}
-          tag: v1.0.0
-          fileName: sistema-inventario-v1.0.0.zip
+          tag: v1.0.2
+          fileName: sistema-inventario-v1.0.2.zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Preparar directorio
         run: |
           mkdir -p despliegue
-          unzip sistema-inventario-v1.0.0.zip -d despliegue
+          unzip sistema-inventario-v1.0.2.zip -d despliegue
 
       - name: Verificar archivos
         run: |
